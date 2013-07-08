@@ -31,6 +31,8 @@ var (
 )
 
 func init() {
+	flag.Parse()
+
 	var err error
 
 	// Parse the provided timeouts to make sure we were passed sane values.
