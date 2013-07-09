@@ -11,7 +11,8 @@ import (
 Command-line flags.
 */
 var (
-	configServer = flag.String("configsvr", "", "Address for the a dedicated Redis server for the purpose of storing configurations")
+	configServer = flag.String("configsrv", "", "Address for the a dedicated Redis server for the purpose of storing configurations")
+	configDatabase = flag.Int("configdb", 0, "The keyspace/DB # to store the cluster configuration in")
 	verbose = flag.Bool("v", false, "Toggle verbosity")
 	debugMode = flag.Bool("debug", false, "Enable debugging mode (lots of useless output)")
 	httpAddr = flag.String("http", ":8000", "Port for the HTTP interface to be served from")
@@ -28,6 +29,7 @@ var (
 	ConnectionTimeout time.Duration
 	ReadTimeout time.Duration
 	WriteTimeout time.Duration
+	Nodes map[string]redis.Conn
 )
 
 func init() {
@@ -50,6 +52,8 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	Nodes = make(map[string]redis.Conn)
 }
 
 func main() {
