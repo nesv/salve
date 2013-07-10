@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net"
-	"log"
 	"bytes"
+	"log"
+	"net"
 )
 
 /*

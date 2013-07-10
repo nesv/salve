@@ -24,7 +24,7 @@ func NewNode(addr string) (n *Node, err error) {
 All requests to the node should be pass through the Run function.
 
 This function handles the round-robin load balancing on read operations, and
-ensuring any write operations are only performed on the master host, in the 
+ensuring any write operations are only performed on the master host, in the
 node.
 */
 func (n *Node) Run(c []byte) (r []byte, err error) {

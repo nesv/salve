@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net/http"
-	"log"
-	"github.com/bmizerany/pat"
 	"fmt"
+	"github.com/bmizerany/pat"
 	"github.com/garyburd/redigo/redis"
+	"log"
+	"net/http"
 )
 
 func StartHttp(laddr string) error {
@@ -37,7 +37,7 @@ func httpAddNode(w http.ResponseWriter, r *http.Request) {
 	} else {
 		Nodes[nodeAddr] = conn
 	}
-	
+
 	// Add the new node address to an ordered list of masters.
 	log.Printf("adding node %q to ring", nodeAddr)
 	if _, err := Config.Do("RPUSH", "salve:masters", nodeAddr); err != nil {

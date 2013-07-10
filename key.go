@@ -6,9 +6,9 @@ the hashing and locating of keys on the partition ring.
 */
 
 import (
-	"errors"
-	"encoding/binary"
 	"crypto/sha1"
+	"encoding/binary"
+	"errors"
 	"io"
 )
 
@@ -29,4 +29,3 @@ func BlurKeyHash(hash []byte) (i uint64, err error) {
 	i = a ^ b ^ c
 	return
 }
-
