@@ -22,6 +22,9 @@ func StartHttp(laddr string) error {
 
 /*
 Adds a node to the cluster.
+
+This assumes the node you are adding is a master. That being said, you should
+only be adding master nodes to the cluster.
 */
 func httpAddNode(w http.ResponseWriter, r *http.Request) {
 	nodeAddr := r.URL.Query().Get(":addr")

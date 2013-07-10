@@ -19,6 +19,7 @@ var (
 	connectionTimeout = flag.String("ctimeout", "2s", "Specify a connection timeout")
 	readTimeout = flag.String("rtimeout", "100ms", "Specify a timeout for read operations")
 	writeTimeout = flag.String("wtimeout", "100ms", "Specify a timeout for write operations")
+	listenAddr = flag.String("listen", ":6379", "The listen address")
 )
 
 /*
@@ -64,6 +65,7 @@ func main() {
 		log.Println("error connecting to configuration server")
 		log.Fatal(err)
 	}
-
-	log.Fatal(StartHttp(*httpAddr))
+	
+	go StartHttp(*httpAddr)
+	log.Fatal(StartRouter(*listenAddr))
 }
