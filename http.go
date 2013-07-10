@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net"
 	"net/http"
 	"log"
 	"github.com/bmizerany/pat"
